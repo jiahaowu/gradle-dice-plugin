@@ -5,7 +5,7 @@ import org.gradle.api.Plugin;
 import org.gradle.api.Project;
 
 /**
- * Plugin is Created by jiahao on 10/25/16.
+ * DxconfigPlugin is Created by jiahao on 10/25/16.
  */
 public class DxconfigPlugin implements Plugin<Project>{
     /**
@@ -15,6 +15,8 @@ public class DxconfigPlugin implements Plugin<Project>{
      */
     @Override
     public void apply(Project target) {
+        target.getExtensions().create("dxconfig", DxconfigPluginExtension.class);
         target.getTasks().create("generateDljconfig", GenerateDljconfig.class);
+        target.getTasks().create("cleanupDljconfig", CleanupDljconfig.class);
     }
 }
