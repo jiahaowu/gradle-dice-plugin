@@ -28,6 +28,7 @@ public class GenerateDljconfig extends DefaultTask {
         if (extension == null) {
             extension = new DxconfigPluginExtension();
         }
+        extension.setDljtargetfile("");
         if (javaPlugin == null) {
             throw new GradleException("You must apply the java plugin before the dxconfig plugin if you are using the java extension.");
         }
@@ -38,7 +39,6 @@ public class GenerateDljconfig extends DefaultTask {
 
         SourceSet mainSourceSet = javaPlugin.getSourceSets().getByName(SourceSet.MAIN_SOURCE_SET_NAME);
         SourceDirectorySet allJava = mainSourceSet.getAllJava();
-        System.out.println(allJava.getSrcDirs());
 
         Map<String, List<String>> map = new HashMap<>();
         for (File file : allJava.getAsFileTree().getFiles()) {
@@ -49,8 +49,6 @@ public class GenerateDljconfig extends DefaultTask {
             List<String> list = map.get(dirName);
             list.add(file.getName().replace(".java", ".class"));
         }
-
-        System.out.println(map);
 
         /* Create and adjust the configuration singleton */
         Configuration cfg = new Configuration(Configuration.VERSION_2_3_23);
@@ -87,5 +85,6 @@ public class GenerateDljconfig extends DefaultTask {
                 }
             }
         }
+        System.out.println("dxconfig complete");
     }
 }

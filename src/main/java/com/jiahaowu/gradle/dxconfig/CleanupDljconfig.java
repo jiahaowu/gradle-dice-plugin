@@ -22,8 +22,8 @@ public class CleanupDljconfig extends DefaultTask {
         SourceSet mainSourceSet = javaPlugin.getSourceSets().getByName(SourceSet.MAIN_SOURCE_SET_NAME);
         SourceDirectorySet allOther = mainSourceSet.getResources();
         for (File file : allOther.getAsFileTree().getFiles()) {
-            System.out.print(file.getName());
             if (file.getName().equals("dljconfig") || file.getName().equals("makeme")) {
+                System.out.println("Deleting "+file.getAbsolutePath());
                 if (!file.delete()) {
                     System.err.println("Failed to delete " + file.getAbsolutePath());
                 }
