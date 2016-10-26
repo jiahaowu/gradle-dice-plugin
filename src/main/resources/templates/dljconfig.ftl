@@ -25,6 +25,7 @@
 
 # Script to configure this package
 
+dljroot="${ext.getDljroot()}"
 dljclasspath="${ext.getDljclasspath()}"
 dljtargetfile="${ext.getDljtargetfile()}"
 dljinstalldir="${ext.getDljinstalldir()}"
